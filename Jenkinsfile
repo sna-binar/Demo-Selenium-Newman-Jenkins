@@ -8,14 +8,9 @@ pipeline {
     }
     stage('API (Newman)') {
       steps {
-        sh '''
-          if ls api-tests/*.postman_collection.json >/dev/null 2>&1; then
+        sh 'api-tests/*.postman_collection.json >/dev/null 2>&1; then
             newman run api-tests/collections/*.postman_collection.json \
-              -e api-tests/*.postman_environment.json
-          else
-            echo "No Postman collection found. Skipping Newman."
-          fi
-        '''
+              -e api-tests/*.postman_environment.json'
       }
     }
     stage('Run Maven Test') {
