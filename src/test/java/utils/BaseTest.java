@@ -5,15 +5,20 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BaseTest {
     protected WebDriver driver;
 
     @Before
     public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new","--no-sandbox","--incognito");
+        String bin = System.getenv("CHROME_BIN");
+        if (bin != null && !bin.isBlank()) options.setBinary(bin);
+
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = new ChromeDriver(options);
     }
 
     @After
