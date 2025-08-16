@@ -1,5 +1,7 @@
 pipeline {
-  agent any
+  agent {
+    docker { image 'ci-agent' }
+  }
   stages {
     stage('Clone') {
       steps {
