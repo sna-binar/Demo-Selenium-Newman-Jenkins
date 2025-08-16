@@ -10,9 +10,10 @@ pipeline {
     }
     stage('API (Newman)') {
       steps {
-        sh 'api-tests/*.postman_collection.json >/dev/null 2>&1; then
-            newman run api-tests/collections/*.postman_collection.json \
-              -e api-tests/*.postman_environment.json'
+        sh '''
+          newman run api-tests/collections/*.postman_collection.json \
+            -e api-tests/*.postman_environment.json
+        '''
       }
     }
     stage('Run Maven Test') {
