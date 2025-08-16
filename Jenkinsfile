@@ -11,7 +11,7 @@ pipeline {
     stage('API (Newman)') {
       steps {
         sh '''
-          newman run api-tests/collections/*.postman_collection.json \
+          newman run api-tests/*.postman_collection.json \
             -e api-tests/*.postman_environment.json
         '''
       }
