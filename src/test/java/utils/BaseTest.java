@@ -14,8 +14,6 @@ public class BaseTest {
     public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new","--no-sandbox","--incognito");
-        String bin = System.getenv("CHROME_BIN");
-        if (bin != null && !bin.isBlank()) options.setBinary(bin);
 
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
